@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index() {
-    	return 'hello world';
+    	return view('frontend.index');
     }
 
     public function login(){
-    	
+    	return view('frontend.login');
     }
 }

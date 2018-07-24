@@ -14,7 +14,7 @@
 Route::get('/', 'PortalController@home');
 
 //user route
-Route::get('/user', 'UserController@index');
+Route::get('/user', 'UserController@index')->name('user.index');
 
 //user route
 Route::get('/user/login', 'UserController@login')->name('user.login');
