@@ -1,7 +1,7 @@
 @extends('frontend.layout')
 
 @section('content')
-
+<div style="padding:20px; "></div>
     <!-- Page Content -->
     <section class="py-5">
       <div class="container">
