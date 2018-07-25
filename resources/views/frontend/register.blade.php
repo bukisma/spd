@@ -6,23 +6,28 @@
     <section class="py-5">
       <div class="container">
         <h1>Register New User</h1>
-        <form>
+
+@include('common.alert')
+@include('common.form_error')
+
+        <form method="post" action="{{ route('user.register.post') }}">
+          @csrf
   <div class="form-group row">
     <label for="name" class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+      <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="{{ old('name') }}">
     </div>
   </div>
   <div class="form-group row">
     <label for="email" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+      <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
     </div>
   </div>
   <div class="form-group row">
-    <label for="noic" class="col-sm-2 col-form-label">No. MyKAD</label>
+    <label for="ic" class="col-sm-2 col-form-label">No. MyKAD</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="noic" id="noic" placeholder="IC No. without dash (-)">
+      <input type="text" class="form-control" name="ic" id="ic" placeholder="IC No. without dash (-)" value="{{ old('ic') }}">
     </div>
   </div>
   <div class="form-group row">
