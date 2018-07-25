@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -13,6 +14,11 @@ class UserController extends Controller
 
     public function login(){
     	return view('frontend.login');
+    }
+
+    public function logout(){
+    	Auth::logout();
+    	return redirect()->route('home')->withSuccess('Logout Success');
     }
 
     public function register(){
@@ -38,5 +44,25 @@ class UserController extends Controller
     	$user->password = bcrypt($request->password);
     	$user->save();
     	return back()->with('success', 'Successfully register');
+    }
+
+    public function loginPost(Request $request){
+    	$request->validate([
+    		'email'		=>	'required',
+    		'password'	=>	'required',
+    	]);
+
+    	$credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->route('user.dashboard');
+        } else {
+        	return back()->withError('Login Failed');
+        }
+    }
+
+    public function dashboard(){
+    	return view('backend.index');
     }
 }
